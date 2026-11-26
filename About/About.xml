@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModMetaData>
+
+  <name>Zorya's Advanced Medical</name>
+  <author>ZoryaTheNova</author>
+  <packageId>Zorya.InDepthMedical</packageId>
+  <description>Advanced Medical Mod</description>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  
+</ModMetaData>

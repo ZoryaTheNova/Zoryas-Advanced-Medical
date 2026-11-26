@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ResearchTabDef>
+    <defName>ZAM_ResearchTab</defName>
+    <label>Z's Adv Medical</label>
+    <generalTitle>Advanced Medical research from </generalTitle>
+    <generalDescription>Unlock various drugs and operations used in treating numerious different injuries and ailements.</generalDescription>
+  </ResearchTabDef>
+</Defs>

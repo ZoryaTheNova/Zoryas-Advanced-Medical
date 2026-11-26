@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingDef ParentName="MakeableDrugBase">
+        <defName>ZAM_Fentanyl</defName>
+        <label>fentanyl</label>
+        <description>A fully synthetic opioid, many times more potent than morphine. Relief is swift and nearly total but short-lived, and the margin between a dose that works and one that kills is razor thin.</description>
+        <possessionCount>5</possessionCount>
+        <descriptionHyperlinks>
+            <HediffDef>ZAM_FentanylHigh</HediffDef>
+            <HediffDef>ZAM_OpioidTolerance</HediffDef>
+            <HediffDef>ZAM_OpioidAddiction</HediffDef>
+        </descriptionHyperlinks>
+        <graphicData>
+            <texPath>Morphine</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <rotatable>false</rotatable>
+        <techLevel>Industrial</techLevel>
+        <statBases>
+            <WorkToMake>600</WorkToMake>
+            <MarketValue>45</MarketValue>
+            <Mass>0.05</Mass>
+            <DeteriorationRate>6</DeteriorationRate>
+            <Flammability>1.3</Flammability>
+        </statBases>
+        <ingestible>
+            <foodType>Processed, Fluid</foodType>
+            <baseIngestTicks>80</baseIngestTicks>
+            <nurseable>true</nurseable>
+            <drugCategory>Medical</drugCategory>
+            <ingestSound>Ingest_Inject</ingestSound>
+            <ingestHoldOffsetStanding>
+                <northDefault>
+                    <offset>(0.18,0,0)</offset>
+                </northDefault>
+            </ingestHoldOffsetStanding>
+            <ingestHoldUsesTable>false</ingestHoldUsesTable>
+            <ingestCommandString>Inject {0}</ingestCommandString>
+            <ingestReportString>Injecting {0}.</ingestReportString>
+            <ingestReportStringEat>Consuming {0}.</ingestReportStringEat>
+            <useEatingSpeedStat>false</useEatingSpeedStat>
+            <outcomeDoers>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>ZAM_FentanylHigh</hediffDef>
+                    <severity>1.0</severity>
+                    <toleranceChemical>ZAM_Opioid</toleranceChemical>
+                </li>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>ZAM_OpioidTolerance</hediffDef>
+                    <toleranceChemical>ZAM_Opioid</toleranceChemical>
+                    <severity>0.04</severity>
+                    <divideByBodySize>true</divideByBodySize>
+                    <multiplyByGeneToleranceFactors>true</multiplyByGeneToleranceFactors>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <recipeMaker>
+            <soundWorking>Recipe_Drug</soundWorking>
+            <recipeUsers>
+                <li>DrugLab</li>
+            </recipeUsers>
+            <skillRequirements>
+                <Crafting>8</Crafting>
+            </skillRequirements>
+            <displayPriority>2000</displayPriority>
+        </recipeMaker>
+        <costList>
+            <Neutroamine>2</Neutroamine>
+        </costList>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <chemical>ZAM_Opioid</chemical>
+                <addictiveness>0.05</addictiveness>
+                <existingAddictionSeverityOffset>0.50</existingAddictionSeverityOffset>
+                <needLevelOffset>0.9</needLevelOffset>
+                <listOrder>20</listOrder>
+                <overdoseSeverityOffset>0.28~0.36</overdoseSeverityOffset>
+                <largeOverdoseChance>0.01</largeOverdoseChance>
+            </li>
+        </comps>
+        <allowedArchonexusCount>50</allowedArchonexusCount>
+    </ThingDef>
+
+    <HediffDef>
+        <defName>ZAM_FentanylHigh</defName>
+        <label>on fentanyl</label>
+        <labelNoun>a fentanyl dose</labelNoun>
+        <description>Fentanyl in the bloodstream. Nearly erases pain, but leaves the mind heavily clouded.</description>
+        <hediffClass>Hediff_High</hediffClass>
+        <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-12.0</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <painOffset>-0.95</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <ThoughtDef>
+        <defName>ZAM_FentanylHigh</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>ZAM_FentanylHigh</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+        <stages>
+        <li>
+            <label>Fentanyl high</label>
+            <description>I feel very numb</description>
+            <baseMoodEffect>15</baseMoodEffect>
+        </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

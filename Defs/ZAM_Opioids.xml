@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ChemicalDef>
+    <defName>ZAM_Opioid</defName>
+    <label>opioid</label>
+    <addictionHediff>ZAM_OpioidAddiction</addictionHediff>
+    <toleranceHediff>ZAM_OpioidTolerance</toleranceHediff>
+    <onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_ZAM_Opioid</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>opioids</label>
+    <description>Because of an opioid addiction, this person needs to regularly take an opioid to avoid withdrawal symptoms.</description>
+    <listPriority>50</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>ZAM_OpioidTolerance</defName>
+    <label>opioid tolerance</label>
+    <description>A built-up tolerance to opioids. The more severe it is, the more opium it takes to get the same effect.</description>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.015</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>ZAM_Opioid</chemical>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>ZAM_OpioidAddiction</defName>
+    <label>opioid addiction</label>
+    <description>A chemical addiction to opioids. Without regular doses, withdrawal symptoms will begin. Extended abstinence will eventually resolve the addiction.</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <chemicalNeed>Chemical_ZAM_Opioid</chemicalNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li></li>
+      <li>
+        <label>withdrawal</label>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.10</offset></li>
+        </capMods>
+        <mentalStateGivers>
+          <li>
+            <mentalState>Binging_DrugExtreme</mentalState>
+            <mtbDays>40</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>ZAM_OpioidWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>ZAM_OpioidAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li><visible>false</visible></li>
+      <li>
+        <label>opioid withdrawal</label>
+        <description>Everything aches and I can't think straight.</description>
+        <baseMoodEffect>-30</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
