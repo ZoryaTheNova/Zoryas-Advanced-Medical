@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+    <!--A lot of these values are subject to change as i test and try and balance everything-->
     <ThingDef ParentName="MakeableDrugBase">
         <defName>ZAM_Fentanyl</defName>
         <label>fentanyl</label>
@@ -104,7 +104,7 @@
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
-                        <offset>-0.25</offset>
+                        <offset>-0.20</offset>
                     </li>
                 </capMods>
             </li>

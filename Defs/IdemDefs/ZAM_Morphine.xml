@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+    <!--A lot of these values are subject to change as i test and try and balance everything-->
     <ThingDef ParentName="MakeableDrugBase">
         <defName>ZAM_Morphine</defName>
         <label>morphine</label>
@@ -100,7 +100,7 @@
         </comps>
         <stages>
             <li>
-                <painOffset>-0.75</painOffset>
+                <painOffset>-0.7</painOffset>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
@@ -110,7 +110,7 @@
             </li>
         </stages>
     </HediffDef>
-    
+
     <ThoughtDef>
         <defName>ZAM_MorphineHigh</defName>
         <workerClass>ThoughtWorker_Hediff</workerClass>
